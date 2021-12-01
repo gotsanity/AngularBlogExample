@@ -1,0 +1,10 @@
+<app-blog-edit></app-blog-edit>
+
+<div class="blogList">
+    <div *ngFor="let item of list" class="blog">
+        <h3>{{ item.title }}</h3>
+        <h5>Created on: {{ item.created_on | date:'short' }}</h5>
+        <p>{{ item.body }}</p>
+        <a [routerLink]="['/blog', item.id]">Read More</a>
+    </div>
+</div>
