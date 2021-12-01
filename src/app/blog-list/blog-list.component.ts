@@ -9,15 +9,23 @@ import { Component, OnInit } from '@angular/core';
 export class BlogListComponent implements OnInit {
 
   list: BlogPost[] = [];
+  isEditing: boolean = false;
 
   constructor(private blogService: BlogService) { }
 
   ngOnInit(): void {
+    // link
     this.blogService.AllPosts$.subscribe(data => {
       console.log('blog list refreshed');
       this.list = data;
     });
+    
+    // trigger
     this.blogService.getAllPosts();
+  }
+
+  toggleEdit() {
+    this.isEditing = !this.isEditing;
   }
 
 }

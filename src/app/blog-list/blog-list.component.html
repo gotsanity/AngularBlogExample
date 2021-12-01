@@ -1,5 +1,9 @@
-<app-blog-edit></app-blog-edit>
+<button (click)="toggleEdit()">Toggle Editing</button><br>
+<div *ngIf="isEditing">
+    <app-blog-edit></app-blog-edit>
+</div>
 
+<br>
 <div class="blogList">
     <div *ngFor="let item of list" class="blog">
         <h3>{{ item.title }}</h3>
