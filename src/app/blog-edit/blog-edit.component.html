@@ -1,7 +1,7 @@
-<form>
+<form [formGroup]="blogForm" (submit)="onSubmit()">
     <label>Title</label><br>
-    <input type="text"><br>
+    <input type="text" formControlName="title"><br>
     <label>Body</label><br>
-    <textarea rows="6" cols="50"></textarea><br>
-    <input type="submit">
+    <textarea rows="6" cols="50" formControlName="body"></textarea><br>
+    <input type="submit" [disabled]="!blogForm.valid">
 </form>

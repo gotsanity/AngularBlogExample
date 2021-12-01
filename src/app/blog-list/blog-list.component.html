@@ -1,6 +1,6 @@
 <button (click)="toggleEdit()">Toggle Editing</button><br>
 <div *ngIf="isEditing">
-    <app-blog-edit></app-blog-edit>
+    <app-blog-edit (onPostEvent)="toggleEdit()"></app-blog-edit>
 </div>
 
 <br>
