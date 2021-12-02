@@ -9,6 +9,7 @@
         <h3>{{ item.title }}</h3>
         <h5>Created on: {{ item.created_on | date:'short' }}</h5>
         <p>{{ item.body }}</p>
-        <a [routerLink]="['/blog', item.id]">Read More</a>
+        <a [routerLink]="['/blog', item.id]">Read More</a><br>
+        <button (click)="deletePost(item.id)">Delete</button>
     </div>
 </div>

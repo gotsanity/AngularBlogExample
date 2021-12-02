@@ -1,5 +1,5 @@
 import { BlogService, BlogPost } from './../blog.service';
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
@@ -10,10 +10,17 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 export class BlogEditComponent implements OnInit {
 
   @Output() onPostEvent: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Input() data: BlogPost = {
+    title: "",
+    body: "",
+    id: "",
+    created_on: new Date(),
+    updated_on: undefined
+  };
 
   blogForm: FormGroup = this.fb.group({
-    title: ['', Validators.required],
-    body: ['', Validators.required]
+    title: [this.data.title, Validators.required],
+    body: [this.data.body, Validators.required]
   });
 
   constructor(private fb: FormBuilder,
@@ -25,8 +32,8 @@ export class BlogEditComponent implements OnInit {
 
   clearForm(): void {
     this.blogForm.setValue({
-      title: '',
-      body: ''
+      title: this.data.title,
+      body: this.data.body
     });
   }
 

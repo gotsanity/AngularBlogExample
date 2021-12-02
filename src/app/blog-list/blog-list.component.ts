@@ -28,4 +28,8 @@ export class BlogListComponent implements OnInit {
     this.isEditing = !this.isEditing;
   }
 
+  deletePost(id: string) {
+    this.blogService.deletePost(id);
+  }
+
 }

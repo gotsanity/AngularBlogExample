@@ -9,6 +9,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class BlogDetailComponent implements OnInit {
 
+  isEditing: boolean = false;
+
   id: string = "";
   post: BlogPost = {
     title: "",
@@ -28,6 +30,10 @@ export class BlogDetailComponent implements OnInit {
       this.id = params["id"];
       this.load();
     });
+  }
+
+  toggleEdit() {
+    this.isEditing = !this.isEditing;
   }
 
   load() {
