@@ -1,4 +1,10 @@
+import { BlogService } from './../blog.service';
 import { Component, OnInit } from '@angular/core';
+
+export interface BlogLink {
+  id: string,
+  title: string
+}
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +13,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  posts: BlogLink[] = [];
+
+  constructor(private blogService: BlogService) { }
 
   ngOnInit(): void {
+    this.blogService.AllPosts$.subscribe(data => {
+      this.posts = data.map(item => {
+        return { id: item.id, title: item.title };
+      });
+    })
   }
 
 }

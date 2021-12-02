@@ -21,18 +21,36 @@ export class BlogService {
 
   constructor(private http: HttpClient) { }
 
+  // read all
   getAllPosts() {
     this.http.get<BlogPost[]>(`${this.apiUrl}/post`).subscribe(data => {
       this.AllPosts$.next(data);
     })
   }
 
+  // read one
   getPostById(id: string): Observable<BlogPost> {
     return this.http.get<BlogPost>(`${this.apiUrl}/post/${id}`);
   }
 
+  // create
   createPost(item: BlogPost) {
     this.http.post<BlogPost>(`${this.apiUrl}/post`, item).subscribe(data => {
+      this.getAllPosts();
+    })
+  }
+
+  // update
+  updatePost(item: BlogPost) {
+    this.http.patch<BlogPost>(`${this.apiUrl}/post/${item.id}`, item).subscribe(data => {
+      this.getAllPosts();
+    })
+  }
+
+  // delete
+  deletePost(id: string) {
+    this.http.delete(`${this.apiUrl}/post/${id}`).subscribe(data => {
+      console.log("delete subscribed", data);
       this.getAllPosts();
     })
   }

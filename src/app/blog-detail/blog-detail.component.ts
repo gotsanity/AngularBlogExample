@@ -21,11 +21,19 @@ export class BlogDetailComponent implements OnInit {
   constructor(private router: ActivatedRoute, private blogService: BlogService) { }
 
   ngOnInit(): void {
-    this.id = this.router.snapshot.paramMap.get('id') as string;
+    // this.id = this.router.snapshot.paramMap.get('id') as string;
     
+    this.router.params.subscribe(params => {
+      console.log("clicked params");
+      this.id = params["id"];
+      this.load();
+    });
+  }
+
+  load() {
     this.blogService.getPostById(this.id).subscribe(data => {
       this.post = data;
-    })
+    });
   }
 
 }
